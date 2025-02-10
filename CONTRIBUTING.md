@@ -1,6 +1,6 @@
 # Contributing
 
-We warmly welcome and appreciate contributions from the community! By participating you agree to the [code of conduct](https://github.com/greenplum-db/gpupgrade/blob/main/CODE-OF-CONDUCT.md).
+We warmly welcome and appreciate contributions from the community! By participating you agree to the [code of conduct](https://github.com/GreengageDB/greengage/blob/main/.github/CODE_OF_CONDUCT.md).
 
 ## Development 
 - Gather input early and often rather than waiting until the end. 
@@ -60,8 +60,3 @@ We warmly welcome and appreciate contributions from the community! By participat
   - Rebasing your PR with main is good practice.
 - Use Github’s “Resolve Conversation” button to indicate you addressed the feedback. There is no need for a comment unless you deviated from the reviewer's specific feedback.
 
-# Community
-
-Connect with Greenplum on:
-- [Slack](https://greenplum.slack.com/)
-- [gpdb-dev mailing list](https://groups.google.com/a/greenplum.org/forum/#!forum/gpdb-dev/join)
