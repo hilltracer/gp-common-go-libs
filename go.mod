@@ -1,6 +1,6 @@
 module github.com/GreengageDB/gp-common-go-libs
 
-go 1.19
+go 1.20
 
 require (
 	github.com/DATA-DOG/go-sqlmock v1.5.0
