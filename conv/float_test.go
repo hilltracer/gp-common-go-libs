@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"testing"
 
-	. "github.com/greenplum-db/gp-common-go-libs/conv"
+	. "github.com/GreengageDB/gp-common-go-libs/conv"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 )

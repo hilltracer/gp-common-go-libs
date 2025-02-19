@@ -6,9 +6,9 @@ import (
 	"os"
 	"testing"
 
-	"github.com/greenplum-db/gp-common-go-libs/iohelper"
-	"github.com/greenplum-db/gp-common-go-libs/operating"
-	"github.com/greenplum-db/gp-common-go-libs/testhelper"
+	"github.com/GreengageDB/gp-common-go-libs/iohelper"
+	"github.com/GreengageDB/gp-common-go-libs/operating"
+	"github.com/GreengageDB/gp-common-go-libs/testhelper"
 
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
