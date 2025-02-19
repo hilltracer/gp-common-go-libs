@@ -125,6 +125,7 @@ const (
 	INCLUDE_MIRRORS     Scope = 1 << 3
 )
 
+//nolint:unused
 func scopeIsSegments(scope Scope) bool {
 	return scope&ON_HOSTS == ON_SEGMENTS
 }
@@ -137,10 +138,12 @@ func scopeExcludesCoordinator(scope Scope) bool {
 	return scope&INCLUDE_COORDINATOR == EXCLUDE_COORDINATOR
 }
 
+//nolint:unused
 func scopeIncludesCoordinator(scope Scope) bool {
 	return scope&INCLUDE_COORDINATOR == INCLUDE_COORDINATOR
 }
 
+//nolint:unused
 func scopeIsRemote(scope Scope) bool {
 	return scope&ON_LOCAL == ON_REMOTE
 }
@@ -153,6 +156,7 @@ func scopeExcludesMirrors(scope Scope) bool {
 	return scope&INCLUDE_MIRRORS == EXCLUDE_MIRRORS
 }
 
+//nolint:unused
 func scopeIncludesMirrors(scope Scope) bool {
 	return scope&INCLUDE_MIRRORS == INCLUDE_MIRRORS
 }
