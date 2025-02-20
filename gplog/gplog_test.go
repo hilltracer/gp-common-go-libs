@@ -42,10 +42,10 @@ var _ = Describe("logger/log tests", func() {
 		operating.System.CurrentUser = func() (*user.User, error) { return &user.User{Username: "testUser", HomeDir: "testDir"}, nil }
 		operating.System.Getpid = func() int { return 0 }
 		operating.System.Hostname = func() (string, error) { return "testHost", nil }
-		operating.System.IsNotExist = func(err error) bool { return false }
+		operating.System.IsNotExist = func(_ error) bool { return false }
 		operating.System.Now = func() time.Time { return time.Date(2017, time.January, 1, 1, 1, 1, 1, time.Local) }
-		operating.System.OpenFileWrite = func(name string, flag int, perm os.FileMode) (io.WriteCloser, error) { return buffer, nil }
-		operating.System.Stat = func(name string) (os.FileInfo, error) { return fakeInfo, nil }
+		operating.System.OpenFileWrite = func(_ string, _ int, _ os.FileMode) (io.WriteCloser, error) { return buffer, nil }
+		operating.System.Stat = func(_ string) (os.FileInfo, error) { return fakeInfo, nil }
 		stdout, stderr, logfile = testhelper.SetupTestLogger()
 	})
 	AfterEach(func() {
@@ -99,7 +99,7 @@ var _ = Describe("logger/log tests", func() {
 		Context("Directory or log file does not exist or is not writable", func() {
 			It("creates a log directory if given a nonexistent log directory", func() {
 				calledWith := ""
-				operating.System.IsNotExist = func(err error) bool { return true }
+				operating.System.IsNotExist = func(_ error) bool { return true }
 				operating.System.Stat = func(name string) (os.FileInfo, error) {
 					calledWith = name
 					return fakeInfo, errors.New("file does not exist")
@@ -109,22 +109,22 @@ var _ = Describe("logger/log tests", func() {
 			})
 			It("creates a log file if given a nonexistent log file", func() {
 				calledWith := ""
-				operating.System.OpenFileWrite = func(name string, flag int, perm os.FileMode) (io.WriteCloser, error) {
+				operating.System.OpenFileWrite = func(name string, _ int, _ os.FileMode) (io.WriteCloser, error) {
 					calledWith = name
 					return buffer, nil
 				}
-				operating.System.IsNotExist = func(err error) bool { return true }
-				operating.System.Stat = func(name string) (os.FileInfo, error) { return fakeInfo, errors.New("file does not exist") }
+				operating.System.IsNotExist = func(_ error) bool { return true }
+				operating.System.Stat = func(_ string) (os.FileInfo, error) { return fakeInfo, errors.New("file does not exist") }
 				gplog.InitializeLogging("testProgram", "/tmp/log_dir")
 				Expect(calledWith).To(Equal("/tmp/log_dir/testProgram_20170101.log"))
 			})
 			It("panics if given a non-writable log directory", func() {
-				operating.System.Stat = func(name string) (os.FileInfo, error) { return fakeInfo, errors.New("permission denied") }
+				operating.System.Stat = func(_ string) (os.FileInfo, error) { return fakeInfo, errors.New("permission denied") }
 				defer testhelper.ShouldPanicWithMessage("permission denied")
 				gplog.InitializeLogging("testProgram", "/tmp/log_dir")
 			})
 			It("panics if given a non-writable log file", func() {
-				operating.System.OpenFileWrite = func(name string, flag int, perm os.FileMode) (io.WriteCloser, error) {
+				operating.System.OpenFileWrite = func(_ string, _ int, _ os.FileMode) (io.WriteCloser, error) {
 					return nil, errors.New("permission denied")
 				}
 				defer testhelper.ShouldPanicWithMessage("permission denied")

@@ -421,6 +421,7 @@ func LogFatalClusterError(errMessage string, scope Scope, numErrors int) {
 	if numErrors != 1 {
 		segMsg += "s"
 	}
+	//revive:disable-next-line error-strings
 	gplog.Fatal(errors.Errorf("%s %d %s. See %s for a complete list of errors.", errMessage, numErrors, segMsg, gplog.GetLogFilePath()), "")
 }
 
